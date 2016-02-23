@@ -370,6 +370,10 @@ p {
   margin-left: 8px;
 }
 
+.navLi:hover{
+  border-bottom: 1px solid #4078c0;
+}
+
 .searchBar2{
   font-size: 13px;
   height: 2.5em;
