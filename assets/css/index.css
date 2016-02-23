@@ -218,6 +218,10 @@ p {
   border-bottom: 1px solid #ccc;
 }
 
+.repoListItem:hover .repTitle{
+  border-bottom: 1px solid #4078c0;
+}
+
 .repTitle{
   display: inline-block;
   margin-top: 6px;
@@ -234,6 +238,10 @@ p {
 .repoListItem{
   padding: 3px 0px 10px 5px;
   border-bottom: 1px solid #ccc;
+}
+
+.repoListItemIo{
+  padding-top: 10px;
 }
 
 .notdongthis{
@@ -343,4 +351,83 @@ p {
   margin-top: -25px;
   margin-bottom: 11px;
   padding-right: 2%;
+}
+
+.repoNav{
+  display:inline-block;
+  float: right;
+  color: #4078c0;
+}
+
+.repoNav li{
+  display:inline-block;
+  font-size: 14px;
+  margin-top: 7px;
+  margin-left: 8px;
+}
+
+.searchBar2{
+  font-size: 13px;
+  height: 2.5em;
+  width: 250px;
+  border: 1px solid #ccc;
+}
+
+.searchButton{
+  font-weight: bold;
+  background: #eee;
+  background-image: linear-gradient(#fcfcfc, #eee);
+  padding: 8px 10px 8px 10px;;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.navLiClick{
+  font-weight: bold;
+  color: black;
+}
+
+.repoHeader{
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.repTitle2{
+  display: inline-block;
+  margin-top: 30px;
+  margin-bottom: 6px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #4078c0;
+}
+
+.repDesc2{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+.updates{
+  color: #888;
+  margin-top: 14px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #eee;
+}
+
+.repoStarBranch{
+  color: #888;
+  text-align: right;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: -100px;
+  margin-bottom: 95px;
+  padding-right: 2%;
+}
+.repoStarBranch span{
+  margin-left: 5px;
+}
+
+.moveUp{
+  margin-top: -35px;
 }

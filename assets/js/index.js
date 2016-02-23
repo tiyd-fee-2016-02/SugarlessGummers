@@ -24,4 +24,9 @@ $(".accordion3").click(function() {
   $(".publicActivityWrapper").addClass("reveal");
 });
 
+$(".navLi").click(function() {
+  $(".navLi").removeClass("navLiClick");
+  $(this).addClass("navLiClick");
+});
+
 });
