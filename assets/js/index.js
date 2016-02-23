@@ -2,7 +2,14 @@ $(function() {
 'use strict';
 
 $.getJSON(("http://api.github.com/users/Octocat"), function(thing){
-  $("#userName").html(thing.name);
+  $("#theName").html(thing.name);
+  $("#theLogin").html(thing.login);
+  $("#company").html(thing.company);
+  $("#theLocation").html(thing.location);
+  $("#html_url").html(thing.html_url);
+  $("#blog").html(thing.blog);
+  $("#joinDate").html(thing.created_at);
+  // $("#profileImage").html(thing.avatar_url);
 })
 
 
