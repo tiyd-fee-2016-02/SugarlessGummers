@@ -1,6 +1,11 @@
 $(function() {
 'use strict';
 
+$.getJSON(("http://api.github.com/users/Octocat"), function(thing){
+  $("#userName").html(thing.name);
+})
+
+
 $(".tab").click(function() {
   $(".tab").removeClass("activeTab");
   $(this).addClass("activeTab");
