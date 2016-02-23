@@ -304,3 +304,28 @@ p {
 .contributionWrapper{
   display: none;
 }
+
+.publicActivityWrapper{
+  display: none;
+}
+
+.pubActEventHolder{
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 25px;
+  background: #f5f5f5;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#orangeIcon{
+  color: white;
+  border-radius: 3px;
+  float: right;
+  margin-top: -110px;
+  background: #f37538;
+  padding: 1px 4px 1px 4px;
+}
