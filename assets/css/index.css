@@ -3,9 +3,11 @@ body{
   font-size: 13px;
 }
 
-/*.pageSpacing{
-  width: 1200px;
-}*/
+.pageSpacing{
+  width: 980px;
+  margin-left:auto;
+  margin-right:auto;
+}
 
 .col{
   display:inline-block;
@@ -16,7 +18,7 @@ body{
 }
 
 .col-2{
-  width:63%;
+  width:73%;
   vertical-align: top;
   margin-left: 1%;
 }
@@ -328,4 +330,17 @@ p {
   margin-top: -110px;
   background: #f37538;
   padding: 1px 4px 1px 4px;
+}
+
+.reveal{
+  display:block;
+}
+
+.stars{
+  color: #888;
+  text-align: right;
+  font-size: 12px;
+  margin-top: -25px;
+  margin-bottom: 11px;
+  padding-right: 2%;
 }
