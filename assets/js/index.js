@@ -13,11 +13,13 @@ $(function() {
   // $("#profileImage").html(thing.avatar_url);
 //})
 
-var user = "Octocat";
+var user = "BestMattEver";
+
 $(".searchBar").keypress(function(e){
   var code = (e.keyCode ? e.keyCode : e.which);
-  //I got this from: http://stackoverflow.com/questions/3462995/jquery-keydown-keypress-keyup-enterkey-detection
+  //I got this code for getting enter from: http://stackoverflow.com/questions/3462995/jquery-keydown-keypress-keyup-enterkey-detection
   //this gets the keycode for the key that was pressed.
+
   if(code ==13)
   {
     console.log("SUBMITTED!");
@@ -32,7 +34,7 @@ $(".searchBar").keypress(function(e){
 // http://api.github.com/users/Octocat <---- the online location
 // apis/github/users/octocat.json <---- the local location
 
-
+//this gets user profile information
 $.getJSON(("http://api.github.com/users/" + user), update);
 
 function update(data){
@@ -63,6 +65,8 @@ function update(data){
   $("#profileImage").attr("src", dataImg);
   $(".followingNum").html(dataFollowing);
 
+  $(".pubActEventHolder").html(dataName + "doesn't have any events to show");
+
 
   if(dataFollowers > 1000)
   {
@@ -75,13 +79,24 @@ function update(data){
     $(".followersNum").html(dataFollowers);
   }
 
+  //this json call gets all the repo information
   $.getJSON(("http://api.github.com/users/" + user + "/repos"), function(data2){
-    console.log(data2.length);
-    var stargazers = [];
-    for(var i = 0; i < data2.length; i++){
-      console.log(data2[i].stargazers_count);
+    //console.log(data2.length);
+    var sortedStargazers = data2.sort(sortByProperty("stargazers_count"));
+    //console.log(sortedStargazers);
 
-    }
+    $(".list").html(" ");
+    for(var k=sortedStargazers.length-1; k >= (sortedStargazers.length)-5; k--)
+    {
+      $(".list").append("<li class='repoListItem'><span class='octicon octicon-repo'></span><span class='repo'><div class='rep repTitle'>&nbsp;" + sortedStargazers[k].name + "</div><div class='rep repDesc'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + sortedStargazers[k].description + "</div><div class='stars'>" + sortedStargazers[k].stargazers_count + "<span class='octicon octicon-star'></span></div></span></li>");
+    }//end for loop.
+
+    //this just verifies that we can get data points from the API
+    // var stargazers = [];
+    // for(var i = 0; i < data2.length; i++){
+    //   console.log(data2[i].stargazers_count);
+    // }
+
   });//end json 2 call.
 
 }//end update.
@@ -140,8 +155,22 @@ function convertToTimeArray(dateTime)  //Converting JSON date to workable string
 }
 
 var dateNow = convertToTimeArray(new Date().toJSON());
+//tori found this on http://www.levihackwith.com/code-snippet-how-to-sort-an-array-of-json-objects-by-property/
+function sortByProperty(property)
+{
+  'use strict';
+  return function (a, b)
+    {
+      var sortStatus = 0;
+      if (a[property] < b[property]) {
+          sortStatus = -1;
+        } else if (a[property] > b[property]) {
+          sortStatus = 1;
+        }
 
-
+        return sortStatus;
+    };
+  }
 
 //THIS CODE USES LODASH TO MAKE A TEMPLATE TO POP INFO IN. - WORKS
 // var goop = _.template("<%- m.name %>", {variable: "m"});
@@ -150,7 +179,7 @@ var dateNow = convertToTimeArray(new Date().toJSON());
 // $('#nameHTML').html(nameWrite);
 
 
-
+// This code just turns on and off the tabs.
 $(".tab").click(function() {
   $(".tab").removeClass("activeTab");
   $(this).addClass("activeTab");
