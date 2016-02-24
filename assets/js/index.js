@@ -13,10 +13,28 @@ $(function() {
   // $("#profileImage").html(thing.avatar_url);
 //})
 
+var user = "Octocat";
+$(".searchBar").keypress(function(e){
+  var code = (e.keyCode ? e.keyCode : e.which);
+  //I got this from: http://stackoverflow.com/questions/3462995/jquery-keydown-keypress-keyup-enterkey-detection
+  //this gets the keycode for the key that was pressed.
+  if(code ==13)
+  {
+    console.log("SUBMITTED!");
+    user = $(".searchBar").val();
+    console.log(user);
+    $.getJSON(("http://api.github.com/users/" + user), update);
+  }
+  // console.log(user);
+})
+
+
 // http://api.github.com/users/Octocat <---- the online location
 // apis/github/users/octocat.json <---- the local location
 
-$.getJSON(("http://api.github.com/users/Octocat"), function(data){
+$.getJSON(("http://api.github.com/users/" + user), update);
+
+function update(data){
   var lodashVar = _.template("<%- m.name %> <%- m.login %> <%- m.company %> <%- m.location %> <%- m.html_url %> <%- m.blog %> <%- m.created_at %> <%- m.avatar_url %>", {variable: "m"});
   var dataName = lodashVar({ name: data.name});
   var dataLogin = lodashVar({ name: data.login});
@@ -35,9 +53,7 @@ $.getJSON(("http://api.github.com/users/Octocat"), function(data){
   $("#blog").html(dataBlog);
   $("#joinDate").html(dataJoin);
   $("#profileImage").attr("src", dataImg);
-
-})
-
+}
 
 
 //THIS CODE USES LODASH TO MAKE A TEMPLATE TO POP INFO IN. - WORKS
