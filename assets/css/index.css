@@ -439,3 +439,7 @@ p {
 .moveUp{
   margin-top: -35px;
 }
+
+.col-1 .octicon{
+  color: #888;
+}

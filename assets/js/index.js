@@ -49,7 +49,7 @@ function update(data){
   var dataFollowers = lodashVar({ name: data.followers});
 
   var StarredURL = lodashVar({ name: data.starred_url});
-  console.log(StarredURL);
+  // console.log(StarredURL);
   // $.getJASO
 
   $("#theName").html(dataName);
@@ -58,10 +58,12 @@ function update(data){
   $("#theLocation").html(dataLocation);
   $("#html_url").html(dataUrl);
   $("#blog").html(dataBlog);
-  $("#joinDate").html(dataJoin);
+  var jsonDateArray = convertToTimeArray(dataJoin);
+  $("#joinDate").html(" " + jsonDateArray[1] + " " + jsonDateArray[2] + ", " + jsonDateArray[0]);
   $("#profileImage").attr("src", dataImg);
-
   $(".followingNum").html(dataFollowing);
+
+
   if(dataFollowers > 1000)
   {
     dataFollowers = Math.floor(dataFollowers/100) * 100; //this gets a nice round number of ks for us to display.
@@ -73,17 +75,66 @@ function update(data){
     $(".followersNum").html(dataFollowers);
   }
 
-  $.getJSON(("http://api.github.com/users/" + user + "/repositories.json") function(data2){
-
-  });//end json 2 call.
+  // $.getJSON(("http://api.github.com/users/" + user + "/repositories.json") function(data2){
+  //
+  // });//end json 2 call.
 
 }//end update.
 
-function convertToTimeArray()
+function convertToTimeArray(dateTime)  //Converting JSON date to workable strings.
 {
-  var currentTimeArray =;
-  timeHolder.get
+  var dateTimeArray = [];
+  dateTimeArray.push(dateTime.substr(0, 4));  //[0] year
+  dateTimeArray.push(dateTime.substr(5, 2));  //[1] month
+  switch(dateTimeArray[1]){
+    case '01':
+      dateTimeArray[1]='Jan';
+      break;
+    case '02':
+      dateTimeArray[1]='Feb';
+      break;
+    case '03':
+      dateTimeArray[1]='Mar';
+      break;
+    case '04':
+      dateTimeArray[1]='Apr';
+      break;
+    case '05':
+      dateTimeArray[1]='May';
+      break;
+    case '06':
+      dateTimeArray[1]='June';
+      break;
+    case '07':
+      dateTimeArray[1]='July';
+      break;
+    case '08':
+      dateTimeArray[1]='Aug';
+      break;
+    case '09':
+      DateTimeArray[1]='Sep';
+      break;
+    case '10':
+      dateTimeArray[1]='Oct';
+      break;
+    case '11':
+      dateTimeArray[1]='Nov';
+      break;
+    case '12':
+      dateTimeArray[1]='Dec';
+      break;
+  }
+
+  dateTimeArray.push(dateTime.substr(8, 2));  //[2] day
+  dateTimeArray.push(dateTime.substr(11, 2));  //[3] hour
+  dateTimeArray.push(dateTime.substr(14, 2));  //[4] minute
+  dateTimeArray.push(dateTime.substr(17, 2));  //[5] second
+  // console.log(dateTimeArray);
+  // console.log(new Date().toJSON());
+  return dateTimeArray;
 }
+
+var dateNow = convertToTimeArray(new Date().toJSON());
 
 
 
