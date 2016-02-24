@@ -75,9 +75,14 @@ function update(data){
     $(".followersNum").html(dataFollowers);
   }
 
-  // $.getJSON(("http://api.github.com/users/" + user + "/repositories.json") function(data2){
-  //
-  // });//end json 2 call.
+  $.getJSON(("http://api.github.com/users/" + user + "/repos"), function(data2){
+    console.log(data2.length);
+    var stargazers = [];
+    for(var i = 0; i < data2.length; i++){
+      console.log(data2[i].stargazers_count);
+
+    }
+  });//end json 2 call.
 
 }//end update.
 
