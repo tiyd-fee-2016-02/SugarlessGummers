@@ -75,11 +75,16 @@ function update(data){
 
   $.getJSON(("http://api.github.com/users/" + user + "/repositories.json") function(data2){
 
-
-
   });//end json 2 call.
 
 }//end update.
+
+function convertToTimeArray()
+{
+  var currentTimeArray =;
+  timeHolder.get
+}
+
 
 
 //THIS CODE USES LODASH TO MAKE A TEMPLATE TO POP INFO IN. - WORKS
