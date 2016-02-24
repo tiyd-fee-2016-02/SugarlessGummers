@@ -32,10 +32,11 @@ $(".searchBar").keypress(function(e){
 // http://api.github.com/users/Octocat <---- the online location
 // apis/github/users/octocat.json <---- the local location
 
+
 $.getJSON(("http://api.github.com/users/" + user), update);
 
 function update(data){
-  var lodashVar = _.template("<%- m.name %> <%- m.login %> <%- m.company %> <%- m.location %> <%- m.html_url %> <%- m.blog %> <%- m.created_at %> <%- m.avatar_url %>", {variable: "m"});
+  var lodashVar = _.template("<%- m.name %> <%- m.login %> <%- m.company %> <%- m.location %> <%- m.html_url %> <%- m.blog %> <%- m.created_at %> <%- m.avatar_url %> <%- m.starred_url %> <%- m.followers %> <%- m.following %>", {variable: "m"});
   var dataName = lodashVar({ name: data.name});
   var dataLogin = lodashVar({ name: data.login});
   var dataCompany = lodashVar({ name: data.company});
@@ -44,6 +45,12 @@ function update(data){
   var dataBlog = lodashVar({ name: data.blog});
   var dataJoin = lodashVar({ name: data.created_at});
   var dataImg = lodashVar({ name: data.avatar_url});
+  var dataFollowing = lodashVar({ name: data.following});
+  var dataFollowers = lodashVar({ name: data.followers});
+
+  var StarredURL = lodashVar({ name: data.starred_url});
+  console.log(StarredURL);
+  // $.getJASO
 
   $("#theName").html(dataName);
   $("#theLogin").html(dataLogin);
@@ -53,7 +60,26 @@ function update(data){
   $("#blog").html(dataBlog);
   $("#joinDate").html(dataJoin);
   $("#profileImage").attr("src", dataImg);
-}
+
+  $(".followingNum").html(dataFollowing);
+  if(dataFollowers > 1000)
+  {
+    dataFollowers = Math.floor(dataFollowers/100) * 100; //this gets a nice round number of ks for us to display.
+    dataFollowers = dataFollowers/1000;
+    $(".followersNum").html(dataFollowers + "k");
+  }
+  else
+  {
+    $(".followersNum").html(dataFollowers);
+  }
+
+  $.getJSON(("http://api.github.com/users/" + user + "/repositories.json") function(data2){
+
+
+
+  });//end json 2 call.
+
+}//end update.
 
 
 //THIS CODE USES LODASH TO MAKE A TEMPLATE TO POP INFO IN. - WORKS
