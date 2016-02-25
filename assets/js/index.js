@@ -49,10 +49,7 @@ function update(data){
   var dataImg = lodashVar({ name: data.avatar_url});
   var dataFollowing = lodashVar({ name: data.following});
   var dataFollowers = lodashVar({ name: data.followers});
-
   var StarredURL = lodashVar({ name: data.starred_url});
-  // console.log(StarredURL);
-  // $.getJASO
 
   $("#theName").html(dataName);
   $("#theLogin").html(dataLogin);
@@ -64,7 +61,6 @@ function update(data){
   $("#joinDate").html(" " + jsonDateArray[1] + " " + jsonDateArray[2] + ", " + jsonDateArray[0]);
   $("#profileImage").attr("src", dataImg);
   $(".followingNum").html(dataFollowing);
-
   $(".pubActEventHolder").html(dataName + "doesn't have any events to show");
 
 
@@ -98,9 +94,6 @@ function update(data){
       $(".list2").append("<li class='repoListItem2'><span class='repo'><div class='rep repTitle2'>&nbsp;" + sortedLastUpdate[t].name +"</div><div class='rep repDesc2'>&nbsp;" + sortedLastUpdate[t].description + "</div><div class='updates'>&nbsp;updated 5 seconds ago </div><div class='repoStarBranch'><span class='octicon octicon-star'></span>" + sortedLastUpdate[t].stargazers_count + "<span class='octicon octicon-git-branch'></span>" + sortedLastUpdate[t].forks_count + "</div></span></li>")
     }
 
-
-
-
     //this just verifies that we can get data points from the API
     // var stargazers = [];
     // for(var i = 0; i < data2.length; i++){
@@ -120,8 +113,6 @@ function convertToTimeArray(dateTime)  //Converting JSON date to workable string
   dateTimeArray.push(dateTime.substr(11, 2));  //[3] hour
   dateTimeArray.push(dateTime.substr(14, 2));  //[4] minute
   dateTimeArray.push(dateTime.substr(17, 2));  //[5] second
-  // console.log(dateTimeArray);
-  // console.log(new Date().toJSON());
   return dateTimeArray;
 }
 
@@ -212,6 +203,7 @@ $(".tab").click(function() {
   $(this).addClass("activeTab");
 });
 
+//Reveals and hides content sections.
 $(".accordion1").click(function() {
   $(".contributionWrapper").addClass("reveal");
   $(".repoWrapper").removeClass("reveal");
